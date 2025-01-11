@@ -66,3 +66,22 @@ void Register::calculateCost()
 	registerCost = credits * 12500;
 	cout << "El costo de la matricula es: " << registerCost << endl;
 }
+
+void Register::assignSchedule(int i, int j, int course)
+{
+	courses[course].setSchedule(0, schedules[i]);
+	courses[course].setSchedule(1, schedules[j]);
+}
+
+void Register::showCourses()
+{
+	for (int i = 0; i < courseCount; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			Schedule schedule = courses[i].getSchedule(j);
+			cout << "Horario " << j + 1 << ": " << schedule.getDay() << " de " << schedule.getStartHour() << " a " << schedule.getEndHour() << " en " << schedule.getClassroom() << endl;
+		}
+		cout << endl;
+	}
+}

@@ -24,4 +24,7 @@ public:
 	void addCourse(string code, string name, string teacher, int credits);
 	void addSchedule(string day, int startHour, int endHour, string classroom);
 	void calculateCost();
+	void assignSchedule(int i, int j, int course);
+
+	void showCourses();
 };
