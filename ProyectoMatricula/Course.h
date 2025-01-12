@@ -7,24 +7,22 @@ using namespace std;
 class Course
 {
 private:
+	Schedule schedule;
 	string code;
 	string name;
 	string teacher;
 	int credits;
-	Schedule schedules[2];
 
 public:
 	Course();
-	void coursebyLevel(int level);
+	void setSchedule(string day, int startHour, int endHour, string classroom);
 	void setCode(string code);
 	void setName(string name);
 	void setTeacher(string teacher);
 	void setCredits(int credits);
-	void setSchedule(int scheduleN, Schedule schedule);
 	string getCode();
 	string getName();
 	string getTeacher();
 	int getCredits();
-	Schedule getSchedule(int scheduleN);
 };
 

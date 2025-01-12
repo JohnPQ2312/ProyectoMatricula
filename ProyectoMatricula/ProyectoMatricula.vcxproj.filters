@@ -18,9 +18,6 @@
     <ClCompile Include="ProyectoMatricula.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Program.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Student.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -33,14 +30,11 @@
     <ClCompile Include="Register.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Consult.cpp">
+    <ClCompile Include="Menu.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Program.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Student.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -53,7 +47,7 @@
     <ClInclude Include="Register.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Consult.h">
+    <ClInclude Include="Menu.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
