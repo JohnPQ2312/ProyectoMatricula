@@ -55,12 +55,6 @@ void Register::addCourse(string code, string name, string teacher, int credits, 
 		course.setCredits(credits);
 		this->credits = credits;
 
-		while (day != "Lunes" && day != "Martes" && day != "Miercoles" && day != "Jueves" && day != "Viernes")
-		{
-			cout << "Dia no valido, ingrese un dia valido (Lunes, Martes, Miercoles, Jueves, Viernes): ";
-			cin >> day;
-		}
-
 		course.setSchedule(day, startHour, endHour, classroom);
 		courses[courseCount] = course;
 		courseCount++;
@@ -74,6 +68,33 @@ void Register::addCourse(string code, string name, string teacher, int credits, 
 int Register::getCurrCourse()
 {
 	return courseCount;
+}
+
+void Register::getAllStudents()
+{
+	for (int i = 0; i < studentCount; i++)
+	{
+		cout << "Estudiante: " << i << endl;
+		cout << "Nombre: " << students[i].getName() << endl;
+		cout << "ID: " << students[i].getId() << endl;
+		cout << "Carrera: " << students[i].getCareer() << endl;
+		cout << "Nivel: " << students[i].getLevel() << endl;
+		cout << endl;
+	}
+}
+
+void Register::getAllCourses()
+{
+	for (int i = 0; i < courseCount; i++)
+	{
+		cout << "Curso: " << i << endl;
+		cout << "Nombre: " << courses[i].getName() << endl;
+		cout << "Codigo: " << courses[i].getCode() << endl;
+		cout << "Profesor: " << courses[i].getTeacher() << endl;
+		cout << "Creditos: " << courses[i].getCredits() << endl;
+		cout << "Horario: " << courses[i].getDay() << " de " << courses[i].getStartHour() << " a " << courses[i].getEndHour() << " en el aula " << courses[i].getClassroom() << endl;
+		cout << endl;
+	}
 }
 
 void Register::addRegistration(int studentIndex, int courseIndex1, int courseIndex2, int courseIndex3, int courseIndex4, int courseIndex5)
@@ -131,6 +152,8 @@ void Register::addRegistration(int studentIndex, int courseIndex1, int courseInd
 
 			registrations[registeredCount] = registration;
 			registeredCount++;
+
+			cout << "Matricula realizada con exito" << endl;
 		}
 		else
 		{
@@ -142,19 +165,50 @@ void Register::addRegistration(int studentIndex, int courseIndex1, int courseInd
 	}
 }
 
-void Register::showRegisteredStudent(int studentIndex)
+void Register::showRegisteredStudent(string input)
 {
-	cout << "Matricula: " << studentIndex << endl;
-	cout << "Estudiante: " << registrations[studentIndex].student.getName() << endl;
-	cout << "Carrera: " << registrations[studentIndex].student.getCareer() << endl;
-	cout << "Nivel: " << registrations[studentIndex].student.getLevel() << endl;
-	cout << "ID: " << registrations[studentIndex].student.getId() << endl;
-	cout << endl;
-	cout << "Cursos matriculados: " << endl;
-	for (int i = 0; i < 5; i++)
+	bool studentFound = false;
+	for (int i = 0; i < registeredCount; i++)
 	{
-		cout << "Nombre: " << registrations[studentIndex].courses[i].getName() << endl;
+		if ((registrations[i].student.getId() == input) || (registrations[i].student.getName() == input))
+		{
+			cout << "Matricula: " << i << endl;
+			cout << "Estudiante: " << registrations[i].student.getName() << endl;
+			cout << "Carrera: " << registrations[i].student.getCareer() << endl;
+			cout << "Nivel: " << registrations[i].student.getLevel() << endl;
+			cout << "ID: " << registrations[i].student.getId() << endl;
+			cout << endl;
+			cout << "Cursos matriculados: " << endl;
+			for (int j = 0; j < 5; j++)
+			{
+				cout << "Nombre: " << registrations[i].courses[j].getName() << endl;
+			}
+			cout << "Costo: " << registrations[i].cost << endl;
+			cout << endl;
+			studentFound = true;
+		}
 	}
-	cout << "Costo: " << registrations[studentIndex].cost << endl;
-	cout << endl;
+	if (studentFound == false)
+	{
+		cout << "Estudiante no encontrado" << endl;
+	}
+}
+
+void Register::showCourse(string input) {
+	bool courseFound = false;
+	for (int i = 0; i < courseCount; i++) {
+		if ((courses[i].getCode() == input) || (courses[i].getName() == input)) {
+			cout << "Curso: " << i << endl;
+			cout << "Nombre: " << courses[i].getName() << endl;	
+			cout << "Codigo: " << courses[i].getCode() << endl;
+			cout << "Profesor: " << courses[i].getTeacher() << endl;
+			cout << "Creditos: " << courses[i].getCredits() << endl;
+			cout << "Horario: " << courses[i].getDay() << " de " << courses[i].getStartHour() << " a " << courses[i].getEndHour() << " en el aula " << courses[i].getClassroom() << endl;
+			cout << endl;
+			courseFound = true;
+		}
+	}
+	if (courseFound == false) {
+		cout << "Curso no encontrado" << endl;
+	}
 }

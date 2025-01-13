@@ -12,4 +12,11 @@ public:
 	void menuMantenimiento();
 	void menuMatricula();
 	void menuConsulta();
+
+	void studentInput();
+	void courseInput();
+	void consultStudents();
+	void consultCourses();
+
+	void makeRegistration();
 };
