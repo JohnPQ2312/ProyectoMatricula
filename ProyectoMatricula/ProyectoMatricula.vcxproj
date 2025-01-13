@@ -140,6 +140,7 @@
     <ClInclude Include="Register.h" />
     <ClInclude Include="Schedule.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="Verifications.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

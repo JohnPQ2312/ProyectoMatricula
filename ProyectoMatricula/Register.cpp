@@ -55,8 +55,13 @@ void Register::addCourse(string code, string name, string teacher, int credits, 
 		course.setCredits(credits);
 		this->credits = credits;
 
-		course.setSchedule(day, startHour, endHour, classroom);
+		while (day != "Lunes" && day != "Martes" && day != "Miercoles" && day != "Jueves" && day != "Viernes")
+		{
+			cout << "Dia no valido, ingrese un dia valido (Lunes, Martes, Miercoles, Jueves, Viernes): ";
+			cin >> day;
+		}
 
+		course.setSchedule(day, startHour, endHour, classroom);
 		courses[courseCount] = course;
 		courseCount++;
 	}
@@ -101,6 +106,15 @@ void Register::addRegistration(int studentIndex, int courseIndex1, int courseInd
 	if (scheduleConflict == false) {
 		if (registeredCount < 30)
 		{
+			for (int i = 0; i < registeredCount; i++)
+			{
+				if (registrations[i].student.getId() == students[studentIndex].getId())
+				{
+					cout << "El estudiante ya está matriculado, por favor, registre a otro estudiante." << endl;
+					return;
+				}
+			}
+
 			Registration registration;
 			registration.student = students[studentIndex];
 
@@ -115,22 +129,12 @@ void Register::addRegistration(int studentIndex, int courseIndex1, int courseInd
 				registration.cost += registration.courses[i].getCredits() * 12500;
 			}
 
-			for (int i = 0; i < registeredCount; i++)
-			{
-				if (registrations[i].student.getId() == registration.student.getId())
-				{
-					cout << "El estudiante ya esta matriculado, porfavor, registre a otro estudiante." << endl;
-					return;
-				}
-				else {
-					registrations[registeredCount] = registration;
-					registeredCount++;
-				}
-			}
+			registrations[registeredCount] = registration;
+			registeredCount++;
 		}
 		else
 		{
-			cout << "No se pueden agregar mas matriculas" << endl;
+			cout << "No se pueden agregar más matrículas" << endl;
 		}
 	}
 	else {
@@ -141,10 +145,10 @@ void Register::addRegistration(int studentIndex, int courseIndex1, int courseInd
 void Register::showRegisteredStudent(int studentIndex)
 {
 	cout << "Matricula: " << studentIndex << endl;
-	cout << "Estudiante: " << students[studentIndex].getName() << endl;
-	cout << "Carrera: " << students[studentIndex].getCareer() << endl;
-	cout << "Nivel: " << students[studentIndex].getLevel() << endl;
-	cout << "ID: " << students[studentIndex].getId() << endl;
+	cout << "Estudiante: " << registrations[studentIndex].student.getName() << endl;
+	cout << "Carrera: " << registrations[studentIndex].student.getCareer() << endl;
+	cout << "Nivel: " << registrations[studentIndex].student.getLevel() << endl;
+	cout << "ID: " << registrations[studentIndex].student.getId() << endl;
 	cout << endl;
 	cout << "Cursos matriculados: " << endl;
 	for (int i = 0; i < 5; i++)
@@ -152,4 +156,5 @@ void Register::showRegisteredStudent(int studentIndex)
 		cout << "Nombre: " << registrations[studentIndex].courses[i].getName() << endl;
 	}
 	cout << "Costo: " << registrations[studentIndex].cost << endl;
+	cout << endl;
 }
