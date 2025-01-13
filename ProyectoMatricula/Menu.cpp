@@ -92,24 +92,36 @@ void Menu::menuMantenimiento() {
 }
 
 void Menu::menuMatricula() {
-    char opcion;
-    do {
-        cout << "--- Menu Matricula ---\n";
-        cout << "1. Registro de Matricula\n";
-        cout << "2. Regresar al menu principal\n";
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
+	if (reg.getCurrStudent() == 0) {
+		cout << "No hay estudiantes registrados. Registre al menos uno para continuar.\n";
+		system("pause");
+		return;
+	}
+	else if (reg.getCurrCourse() == 0) {
+		cout << "No hay cursos registrados. Registre al menos uno para continuar.\n";
+		system("pause");
+		return;
+	}
+    else {
+        char opcion;
+        do {
+            cout << "--- Menu Matricula ---\n";
+            cout << "1. Registro de Matricula\n";
+            cout << "2. Regresar al menu principal\n";
+            cout << "Seleccione una opcion: ";
+            cin >> opcion;
 
-        switch (opcion) {
-        case '1':
-            cout << "Registrando matricula...\n";
-            break;
-        case '2':
-            return;
-        default:
-            cout << "Opcion no valida. Intente de nuevo.\n";
-        }
-    } while (opcion != '2');
+            switch (opcion) {
+            case '1':
+                cout << "Registrando matricula...\n";
+                break;
+            case '2':
+                return;
+            default:
+                cout << "Opcion no valida. Intente de nuevo.\n";
+            }
+        } while (opcion != '2');
+    }
 }
 
 void Menu::menuConsulta() {
@@ -124,11 +136,21 @@ void Menu::menuConsulta() {
 
         switch (opcion) {
         case '1':
-            cout << "Consultando estudiantes...\n";
-            break;
+			if (reg.getCurrStudent() == 0) {
+				cout << "No hay estudiantes registrados.\n";
+			}
+			else {
+				cout << "Consultando estudiantes...\n";
+                break;
+			}
         case '2':
-            cout << "Consultando cursos...\n";
-            break;
+			if (reg.getCurrCourse() == 0) {
+				cout << "No hay cursos registrados.\n";
+			}
+			else {
+				cout << "Consultando cursos...\n";
+				break;
+			}
         case '3':
             return;
         default:

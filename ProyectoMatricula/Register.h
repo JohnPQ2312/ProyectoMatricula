@@ -22,5 +22,15 @@ public:
 	void addCourse(string code, string name, string teacher, int credits, string day, int startHour, int endHour, string classroom);
 	int getCurrStudent();
 	int getCurrCourse();
-	void calculateCost();
+
+	struct Registration
+	{
+		Student student;
+		Course courses[5];
+		int cost = 0;
+	}; Registration registrations[30];
+	int registeredCount;
+
+	void addRegistration(int studentIndex, int courseIndex1, int courseIndex2, int courseIndex3, int courseIndex4, int courseIndex5);
+	void showRegisteredStudent(int studentIndex);
 };

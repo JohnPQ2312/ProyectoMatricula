@@ -66,3 +66,22 @@ int Course::getCredits()
 	return credits;
 }
 
+string Course::getDay()
+{
+	return schedule.getDay();
+}
+
+int Course::getStartHour()
+{
+	return schedule.getStartHour();
+}
+
+int Course::getEndHour()
+{
+	return schedule.getEndHour();
+}
+
+string Course::getClassroom()
+{
+	return schedule.getClassroom();
+}

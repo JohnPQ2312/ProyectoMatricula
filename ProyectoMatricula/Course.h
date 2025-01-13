@@ -24,5 +24,9 @@ public:
 	string getName();
 	string getTeacher();
 	int getCredits();
+	string getDay();
+	int getStartHour();
+	int getEndHour();
+	string getClassroom();
 };
 
