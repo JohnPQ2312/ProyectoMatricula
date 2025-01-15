@@ -163,9 +163,9 @@ void Menu::menuConsulta() {
 				system("pause");
 			}
 			else {
-				reg.getAllRegistrations();
-				system("pause");
+				Menu::consultRegistrations();
 			}
+            break;
         case '4':
             return;
         default:
@@ -225,10 +225,12 @@ void Menu::consultStudents() {
 	cin >> input;
 
 	if (input == "all") {
+		system("cls");
 		reg.getAllStudents();
 		system("pause");
 	}
 	else {
+		system("cls");
 		reg.showStudent(input);
 		system("pause");
 	}
@@ -239,10 +241,12 @@ void Menu::consultCourses() {
 	cout << "Ingrese el codigo o nombre del curso a consultar, o ingrese 'all' para mostrar todos los cursos: ";
 	cin >> input;
 	if (input == "all") {
+		system("cls");
 		reg.getAllCourses();
         system("pause");
 	}
 	else {
+		system("cls");
 		reg.showCourse(input);
         system("pause");
 	}
@@ -297,10 +301,12 @@ void Menu::consultRegistrations() {
 	cout << "Ingrese el ID o nombre del estudiante a consultar, o ingrese 'all' para mostrar todas las matriculas: ";
 	cin >> input;
 	if (input == "all") {
+		system("cls");
 		reg.getAllRegistrations();
 		system("pause");
 	}
 	else {
+        system("cls");
 		reg.showRegisteredStudent(input);
 		system("pause");
 	}
