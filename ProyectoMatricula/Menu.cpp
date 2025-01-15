@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-void Menu::mostrarMenuPrincipal() {
+void Menu::showMainMenu() {
     char opcion;
 
     do {
@@ -17,19 +17,19 @@ void Menu::mostrarMenuPrincipal() {
         switch (opcion) {
         case 'a':
 			system("cls");
-            menuArchivo();
+            menuFile();
             break;
         case 'b':
             system("cls");
-            menuMantenimiento();
+            menuMaintance();
             break;
         case 'c':
             system("cls");
-            menuMatricula();
+            menuRegister();
             break;
         case 'd':
             system("cls");
-            menuConsulta();
+            menuConsult();
             break;
         case 'e':
             cout << "Saliendo del programa...\n";
@@ -41,7 +41,7 @@ void Menu::mostrarMenuPrincipal() {
     } while (opcion != 'e');
 }
 
-void Menu::menuArchivo() {
+void Menu::menuFile() {
     char opcion;
     do {
         system("cls");
@@ -64,7 +64,7 @@ void Menu::menuArchivo() {
     } while (opcion != '2');
 }
 
-void Menu::menuMantenimiento() {
+void Menu::menuMaintance() {
     char opcion;
     do {
         system("cls");
@@ -92,7 +92,7 @@ void Menu::menuMantenimiento() {
     } while (opcion != '3');
 }
 
-void Menu::menuMatricula() {
+void Menu::menuRegister() {
 	if (reg.getCurrStudent() == 0) {
 		cout << "No hay estudiantes registrados. Registre al menos uno para continuar.\n";
 		system("pause");
@@ -126,7 +126,7 @@ void Menu::menuMatricula() {
     }
 }
 
-void Menu::menuConsulta() {
+void Menu::menuConsult() {
     char opcion;
     do {
         system("cls");

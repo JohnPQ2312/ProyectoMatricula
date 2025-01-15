@@ -7,11 +7,11 @@ class Menu
 {
 public:
 	Register reg;
-	void mostrarMenuPrincipal();
-	void menuArchivo();
-	void menuMantenimiento();
-	void menuMatricula();
-	void menuConsulta();
+	void showMainMenu();
+	void menuFile();
+	void menuMaintance();
+	void menuRegister();
+	void menuConsult();
 
 	void studentInput();
 	void courseInput();

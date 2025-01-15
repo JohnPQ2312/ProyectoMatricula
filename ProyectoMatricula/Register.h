@@ -26,14 +26,14 @@ public:
 	void getAllCourses();
 	void getAllRegistrations();
 
-	struct Registration
+	struct Registration // Struct to store the registration information
 	{
 		Student student;
 		Course courses[5];
 		int cost = 0;
 	}; Registration registrations[30];
-	int registeredCount;
 
+	int registeredCount;
 	void addRegistration(int studentIndex, int courseIndex1, int courseIndex2, int courseIndex3, int courseIndex4, int courseIndex5);
 	void showRegisteredStudent(string input);
 	void showCourse(string input);
