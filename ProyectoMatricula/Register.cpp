@@ -106,8 +106,25 @@ void Register::getAllCourses()
 void Register::addRegistration(int studentIndex, int courseIndex1, int courseIndex2, int courseIndex3, int courseIndex4, int courseIndex5)
 {
 	bool scheduleConflict = false;
+	bool courseExists = true;
 
 	int courseVector[5] = { courseIndex1, courseIndex2, courseIndex3, courseIndex4, courseIndex5 };
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (courseVector[i] < 0 || courseVector[i] >= courseCount)
+		{
+			courseExists = false;
+			break;
+		}
+	}
+
+	if (courseExists == false)
+	{
+		cout << "Uno o mas cursos no existen. Por favor, ingrese cursos válidos." << endl;
+		system("pause");
+		return;
+	}
 
 	for (int i = 0; i < 5; i++)
 	{
