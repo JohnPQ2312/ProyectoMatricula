@@ -17,6 +17,9 @@ public:
 	void courseInput();
 	void consultStudents();
 	void consultCourses();
+	void consultRegistrations();
 
 	void makeRegistration();
+
+	void about();
 };

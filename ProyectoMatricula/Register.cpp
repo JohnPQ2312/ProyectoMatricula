@@ -28,6 +28,9 @@ void Register::addStudent(string name, string id, string career, int level)
 
 		students[studentCount] = student;
 		studentCount++;
+
+		cout << "Estudiante agregado con exito" << endl;
+		system("pause");
 	}
 	else
 	{
@@ -58,6 +61,9 @@ void Register::addCourse(string code, string name, string teacher, int credits, 
 		course.setSchedule(day, startHour, endHour, classroom);
 		courses[courseCount] = course;
 		courseCount++;
+
+		cout << "Curso agregado con exito" << endl;
+		system("pause");
 	}
 	else
 	{
@@ -74,7 +80,7 @@ void Register::getAllStudents()
 {
 	for (int i = 0; i < studentCount; i++)
 	{
-		cout << "Estudiante: " << i << endl;
+		cout << "Estudiante: " << i + 1 << endl;
 		cout << "Nombre: " << students[i].getName() << endl;
 		cout << "ID: " << students[i].getId() << endl;
 		cout << "Carrera: " << students[i].getCareer() << endl;
@@ -87,7 +93,7 @@ void Register::getAllCourses()
 {
 	for (int i = 0; i < courseCount; i++)
 	{
-		cout << "Curso: " << i << endl;
+		cout << "Curso: " << i + 1 << endl;
 		cout << "Nombre: " << courses[i].getName() << endl;
 		cout << "Codigo: " << courses[i].getCode() << endl;
 		cout << "Profesor: " << courses[i].getTeacher() << endl;
@@ -153,7 +159,9 @@ void Register::addRegistration(int studentIndex, int courseIndex1, int courseInd
 			registrations[registeredCount] = registration;
 			registeredCount++;
 
-			cout << "Matricula realizada con exito" << endl;
+			cout << "Matricula " << registeredCount << " realizada con exito" << endl;
+			system("pause");
+			system("cls");
 		}
 		else
 		{
@@ -172,7 +180,7 @@ void Register::showRegisteredStudent(string input)
 	{
 		if ((registrations[i].student.getId() == input) || (registrations[i].student.getName() == input))
 		{
-			cout << "Matricula: " << i << endl;
+			cout << "Matricula: " << i + 1 << endl;
 			cout << "Estudiante: " << registrations[i].student.getName() << endl;
 			cout << "Carrera: " << registrations[i].student.getCareer() << endl;
 			cout << "Nivel: " << registrations[i].student.getLevel() << endl;
@@ -190,7 +198,27 @@ void Register::showRegisteredStudent(string input)
 	}
 	if (studentFound == false)
 	{
-		cout << "Estudiante no encontrado" << endl;
+		cout << "Estudiante no encontrado o no matriculado" << endl;
+	}
+}
+
+void Register::getAllRegistrations()
+{
+	for (int i = 0; i < registeredCount; i++)
+	{
+		cout << "Matricula: " << i + 1 << endl;
+		cout << "Estudiante: " << registrations[i].student.getName() << endl;
+		cout << "Carrera: " << registrations[i].student.getCareer() << endl;
+		cout << "Nivel: " << registrations[i].student.getLevel() << endl;
+		cout << "ID: " << registrations[i].student.getId() << endl;
+		cout << endl;
+		cout << "Cursos matriculados: " << endl;
+		for (int j = 0; j < 5; j++)
+		{
+			cout << "Nombre: " << registrations[i].courses[j].getName() << endl;
+		}
+		cout << "Costo: " << registrations[i].cost << endl;
+		cout << endl;
 	}
 }
 
@@ -198,7 +226,7 @@ void Register::showCourse(string input) {
 	bool courseFound = false;
 	for (int i = 0; i < courseCount; i++) {
 		if ((courses[i].getCode() == input) || (courses[i].getName() == input)) {
-			cout << "Curso: " << i << endl;
+			cout << "Curso: " << i + 1 << endl;
 			cout << "Nombre: " << courses[i].getName() << endl;	
 			cout << "Codigo: " << courses[i].getCode() << endl;
 			cout << "Profesor: " << courses[i].getTeacher() << endl;
@@ -210,5 +238,23 @@ void Register::showCourse(string input) {
 	}
 	if (courseFound == false) {
 		cout << "Curso no encontrado" << endl;
+	}
+}
+
+void Register::showStudent(string input) {
+	bool studentFound = false;
+	for (int i = 0; i < studentCount; i++) {
+		if ((students[i].getId() == input) || (students[i].getName() == input)) {
+			cout << "Estudiante: " << i + 1 << endl;
+			cout << "Nombre: " << students[i].getName() << endl;
+			cout << "ID: " << students[i].getId() << endl;
+			cout << "Carrera: " << students[i].getCareer() << endl;
+			cout << "Nivel: " << students[i].getLevel() << endl;
+			cout << endl;
+			studentFound = true;
+		}
+	}
+	if (studentFound == false) {
+		cout << "Estudiante no encontrado" << endl;
 	}
 }

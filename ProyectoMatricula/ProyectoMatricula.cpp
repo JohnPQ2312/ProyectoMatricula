@@ -20,9 +20,8 @@ int main() {
 	//reg1.addRegistration(0, 0, 1, 2, 3, 4);
 	//reg1.addRegistration(1, 1, 2, 3, 4, 0);
 
-	//reg1.showCourse("123");
-	//reg1.showCourse("101");
-	//reg1.showCourse("789");
+	//reg1.showRegisteredStudent("Juan");
+	//reg1.showRegisteredStudent("Pedro");
 
 
 	return 0;

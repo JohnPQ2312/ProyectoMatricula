@@ -53,7 +53,8 @@ void Menu::menuArchivo() {
 
         switch (opcion) {
         case '1':
-            cout << "Informacion del programa...\n";
+			Menu::about();
+			system("pause");
             break;
         case '2':
             return;
@@ -68,17 +69,19 @@ void Menu::menuMantenimiento() {
     do {
         system("cls");
         cout << "--- Menu Mantenimiento ---\n";
-        cout << "1. Estudiantes\n";
-        cout << "2. Cursos\n";
+        cout << "1. Agregar estudiante\n";
+        cout << "2. Agregar curso\n";
         cout << "3. Regresar al menu principal\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
         case '1':
+			system("cls");
 			Menu::studentInput();
             break;
         case '2':
+			system("cls");
             Menu::courseInput();
             break;
         case '3':
@@ -96,7 +99,7 @@ void Menu::menuMatricula() {
 		return;
 	}
 	else if (reg.getCurrCourse() == 0) {
-		cout << "No hay cursos registrados. Registre al menos uno para continuar.\n";
+		cout << "No hay cursos registrados. Registre al menos 5 para continuar.\n";
 		system("pause");
 		return;
 	}
@@ -130,7 +133,8 @@ void Menu::menuConsulta() {
         cout << "--- Menu Consulta ---\n";
         cout << "1. Estudiantes\n";
         cout << "2. Cursos\n";
-        cout << "3. Regresar al menu principal\n";
+		cout << "3. Matriculas\n";
+        cout << "4. Regresar al menu principal\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -153,12 +157,21 @@ void Menu::menuConsulta() {
 				Menu::consultCourses();
 			}
             break;
-        case '3':
+		case '3':
+			if (reg.registeredCount == 0) {
+				cout << "No hay matriculas registradas.\n";
+				system("pause");
+			}
+			else {
+				reg.getAllRegistrations();
+				system("pause");
+			}
+        case '4':
             return;
         default:
             cout << "Opcion no valida. Intente de nuevo.\n";
         }
-    } while (opcion != '3');
+    } while (opcion != '4');
 }
 
 
@@ -178,32 +191,32 @@ void Menu::studentInput() {
 }
 
 void Menu::courseInput() {
-	string code, name, teacher, day, classroom;
-	int credits, startHour, endHour;
-	cout << "Ingrese el codigo del curso: ";
-	cin >> code;
-	cout << "Ingrese el nombre del curso: ";
-	cin >> name;
-	cout << "Ingrese el nombre del profesor: ";
-	cin >> teacher;
-	cout << "Ingrese la cantidad de creditos: ";
-	cin >> credits;
-	cout << "Ingrese el dia del curso (Lunes, Martes, Miercoles, Jueves, Viernes): ";
-	cin >> day;
+    string code, name, teacher, day, classroom;
+    int credits, startHour, endHour;
+    cout << "Ingrese el codigo del curso: ";
+    cin >> code;
+    cout << "Ingrese el nombre del curso: ";
+    cin >> name;
+    cout << "Ingrese el nombre del profesor: ";
+    cin >> teacher;
+    cout << "Ingrese la cantidad de creditos: ";
+    cin >> credits;
+    cout << "Ingrese el dia del curso (Lunes, Martes, Miercoles, Jueves, Viernes): ";
+    cin >> day;
 
     while (day != "Lunes" && day != "Martes" && day != "Miercoles" && day != "Jueves" && day != "Viernes")
     {
         cout << "Dia no valido o mal escrito, ingrese un dia valido (Lunes, Martes, Miercoles, Jueves, Viernes): ";
         cin >> day;
     }
-	
+
     cout << "Ingrese la hora de inicio del curso: ";
-	cin >> startHour;
-	cout << "Ingrese la hora de finalizacion del curso: ";
-	cin >> endHour;
-	cout << "Ingrese el salon del curso: ";
-	cin >> classroom;
-	reg.addCourse(code, name, teacher, credits, day, startHour, endHour, classroom);
+    cin >> startHour;
+    cout << "Ingrese la hora de finalizacion del curso: ";
+    cin >> endHour;
+    cout << "Ingrese el salon del curso: ";
+    cin >> classroom;
+    reg.addCourse(code, name, teacher, credits, day, startHour, endHour, classroom);
 }
 
 void Menu::consultStudents() {
@@ -213,9 +226,11 @@ void Menu::consultStudents() {
 
 	if (input == "all") {
 		reg.getAllStudents();
+		system("pause");
 	}
 	else {
-		reg.showRegisteredStudent(input);
+		reg.showStudent(input);
+		system("pause");
 	}
 }
 
@@ -225,37 +240,78 @@ void Menu::consultCourses() {
 	cin >> input;
 	if (input == "all") {
 		reg.getAllCourses();
+        system("pause");
 	}
 	else {
 		reg.showCourse(input);
+        system("pause");
 	}
 }
 
 
 void Menu::makeRegistration() {
-    string confirmation;
-    cout << "Para realizar el registro de matricula, debe revisar primero la consulta para saber cual estudiante y cuales cursos desea registrar. " << endl;
-	cout << "Desea continuar con la matricula? (si/no): ";
-	cin >> confirmation;
+    if (reg.getCurrCourse() < 5) {
+		cout << "No se pueden hacer matriculas, no hay suficientes cursos registrados.\n";
+    }
+    else {
+        string confirmation;
+		system("cls");
+        cout << "Para realizar el registro de matricula, debe revisar primero la consulta para saber cual estudiante y cuales cursos desea registrar. " << endl;
+        cout << "Desea continuar con la matricula? (si/no): ";
+        cin >> confirmation;
 
-	if (confirmation == "si") {
-        int studentNumber;
-        int courseIndex1, courseIndex2, courseIndex3, courseIndex4, courseIndex5;
-        cout << "Ingrese el numero del estudiante: ";
-        cin >> studentNumber;
-        cout << "Ingrese el numero del primer curso: ";
-        cin >> courseIndex1;
-        cout << "Ingrese el numero del segundo curso: ";
-        cin >> courseIndex2;
-        cout << "Ingrese el numero del tercer curso: ";
-        cin >> courseIndex3;
-        cout << "Ingrese el numero del cuarto curso: ";
-        cin >> courseIndex4;
-        cout << "Ingrese el numero del quinto curso: ";
-        cin >> courseIndex5;
-        reg.addRegistration(studentNumber, courseIndex1, courseIndex2, courseIndex3, courseIndex4, courseIndex5);
+        if (confirmation == "si") {
+            int studentNumber;
+            int courseIndex1, courseIndex2, courseIndex3, courseIndex4, courseIndex5;
+            cout << "Ingrese el numero del estudiante: ";
+            cin >> studentNumber;
+			studentNumber--;
+            cout << "Ingrese el numero del primer curso: ";
+            cin >> courseIndex1;
+			courseIndex1--;
+            cout << "Ingrese el numero del segundo curso: ";
+            cin >> courseIndex2;
+            courseIndex2--;
+            cout << "Ingrese el numero del tercer curso: ";
+            cin >> courseIndex3;
+            courseIndex3--;
+            cout << "Ingrese el numero del cuarto curso: ";
+            cin >> courseIndex4;
+            courseIndex4--;
+            cout << "Ingrese el numero del quinto curso: ";
+            cin >> courseIndex5;
+            courseIndex5--;
+            reg.addRegistration(studentNumber, courseIndex1, courseIndex2, courseIndex3, courseIndex4, courseIndex5);
+        }
+        else {
+			system("cls");
+            cout << "Matricula cancelada.\n";
+			system("pause");
+
+        }
+    }
+}
+
+void Menu::consultRegistrations() {
+	string input;
+	cout << "Ingrese el ID o nombre del estudiante a consultar, o ingrese 'all' para mostrar todas las matriculas: ";
+	cin >> input;
+	if (input == "all") {
+		reg.getAllRegistrations();
+		system("pause");
 	}
 	else {
-		cout << "Matricula cancelada.\n";
+		reg.showRegisteredStudent(input);
+		system("pause");
 	}
 }
+
+void Menu::about() {
+	system("cls");
+	cout << "---Proyecto de Matricula---" << endl;
+	cout << "Fecha de creacion: 08/01/2025" << endl;
+	cout << "Version: 1.0" << endl;
+    cout << "Link del repositorio en GitHub: https://github.com/JohnPQ2312/ProyectoMatricula" << endl;
+    cout << "Este programa fue creado por: John Perez. Github: https://github.com/JohnPQ2312" << endl;
+}   
+

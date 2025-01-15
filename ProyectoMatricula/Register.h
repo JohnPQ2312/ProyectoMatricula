@@ -24,6 +24,7 @@ public:
 	int getCurrCourse();
 	void getAllStudents();
 	void getAllCourses();
+	void getAllRegistrations();
 
 	struct Registration
 	{
@@ -36,4 +37,5 @@ public:
 	void addRegistration(int studentIndex, int courseIndex1, int courseIndex2, int courseIndex3, int courseIndex4, int courseIndex5);
 	void showRegisteredStudent(string input);
 	void showCourse(string input);
+	void showStudent(string input);
 };
