@@ -255,7 +255,9 @@ void Menu::consultCourses() {
 
 void Menu::makeRegistration() {
     if (reg.getCurrCourse() < 5) {
+        system("cls");
 		cout << "No se pueden hacer matriculas, no hay suficientes cursos registrados.\n";
+		system("pause");
     }
     else {
         string confirmation;
